@@ -14,11 +14,17 @@ exports.get_index_profile = (req, res) => {
                        'apisign': apisign(profileURL)
                     }
                 }
-          const getData = fetch(profileURL, otherParams)
-                .then(res => res.json())
-                .catch(err => {
-                          console.log(err)
-                })
-
-                res.status(201).json(getData)
+         
+		     fetch(profileURL, otherParams)
+		     .then(data => data.json())
+		     .then(result => {
+				if(result.data !== null) {
+				res.status(201).json(result.data)
+				} else {
+					res.status(404).json({'message': 'User can not be found!'})
+				}
+			})
+		     .catch(err => {
+		     	res.status(500).json({'error': err})
+			})	    
 }
