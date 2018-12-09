@@ -14,7 +14,11 @@ exports.get_index_profile = (req, res) => {
                        'apisign': apisign(profileURL)
                     }
                 }
-                const getData = fetch(profileURL, otherParams).then(res => res.json())
+          const getData = fetch(profileURL, otherParams)
+                .then(res => res.json())
+                .catch(err => {
+                          console.log(err)
+                })
 
-                res.status(201).json(getData.then(json => console.log(json)))
+                res.status(201).json(getData)
 }
