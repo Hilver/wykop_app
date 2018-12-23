@@ -1,3 +1,9 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "html.format.indentHandlebars": true,
+    "html.format.indentInnerHtml": true,
+    "vetur.format.options.tabSize": 4,
+    "vetur.format.options.useTabs": true,
+    "vetur.format.scriptInitialIndent": true,
+    "vetur.format.styleInitialIndent": true
 }
