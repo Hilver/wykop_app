@@ -3,8 +3,6 @@ const fetch = require('node-fetch');
 
 const apisign = url => md5(process.env.APP_SECRET + url)
 
-
-
 exports.get_index_profile = (req, res) => {
           const profile = req.params.login
           const profileURL = 'https://a2.wykop.pl/Profiles/Index/' + profile + '/appkey/' + process.env.APP_KEY
@@ -19,7 +17,7 @@ exports.get_index_profile = (req, res) => {
 		     .then(data => data.json())
 		     .then(result => {
 				if(result.data !== null) {
-				res.status(201).json(result.data)
+					res.status(201).json(result.data)
 				} else {
 					res.status(404).json({'message': 'User can not be found!'})
 				}
