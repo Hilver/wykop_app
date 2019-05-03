@@ -3,6 +3,7 @@ const app = express()
 const dotenv = require('dotenv')
 
 const profileRoutes = require('./api/routes/profile')
+const topRoutes = require('./api/routes/top')
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
         next();
     })
 
-app.use('/profile', profileRoutes) 
+app.use('/profile', profileRoutes)
+app.use('/top', topRoutes)
 
 module.exports = app
