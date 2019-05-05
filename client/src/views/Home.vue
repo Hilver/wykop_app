@@ -1,7 +1,6 @@
-<template>
-	<div class="home">    
-		<Dashboard />
-	</div>
+<template lang="pug">
+	div.home
+		Dashboard
 </template>
 
 <script>
@@ -11,7 +10,7 @@ import Dashboard from './Dashboard.vue'
 export default {
   name: 'dashboard',
   components: {
-    Dashboard
+	Dashboard
   }
 }
 </script>

@@ -1,24 +1,18 @@
-<template>
-    <div>
-        <v-layout row wrap>
-            <v-flex xs6>
-                <img :src="avatarImg" :class="{'blue-border': sex === 'male', 'pink-border': sex === 'female'}">
-            </v-flex>
-            <v-flex xs6>
-                <p>Login: {{ login }}</p>
-                <p>Opis: {{ description }}</p>
-                <p>Ranking: {{ ranking }}</p>
-                <p>Dodane: {{ linksAdded }}</p>
-                <p>Opublikowane: {{ linksPublished }}</p>
-                <p>Skuteczność: {{ effectiveness }}</p>
-                <p>Wykopane: {{ diggs }}</p>
-                <p>Data rejestracji: {{ register_date }}</p>
-            </v-flex>
-        </v-layout>
-        <v-layout row wrap>
-            
-        </v-layout>
-    </div>
+<template lang="pug">
+    div
+        v-layout(row wrap)
+            v-flex(xs6)
+                img(:src="avatarImg" :class="{'blue-border': sex === 'male', 'pink-border': sex === 'female'}")    
+            v-flex(xs6)
+                p Login: {{ login }}
+                p Opis: {{ description }}
+                p Ranking: {{ ranking }}
+                p Dodane: {{ linksAdded }}
+                p Opublikowane: {{ linksPublished }}
+                p Skuteczność: {{ effectiveness }}
+                p Wykopane: {{ diggs }}
+                p Data rejestracji: {{ register_date }}
+        v-layout(row wrap)
 </template>
 
 <script>

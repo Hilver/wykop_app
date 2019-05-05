@@ -1,29 +1,22 @@
-<template>
-	<v-layout row wrap>
-		<v-flex xs12>
-			<v-layout row wrap>
-				<v-flex xs6>
-					<input-profile v-model="inputProfile" @click="getProfileInfo"></input-profile>
-				</v-flex>
-			</v-layout>
-			<v-layout row wrap>
-				<v-flex xs6>
-					<profile-card 
-					:login="profile.login" 
-					:avatarImg="profile.avatar" 
-					:ranking="profile.ranking" 
-					:description="profile.description" 
-					:sex="profile.sex" 
-					:linksAdded="profile.linksAdded"
-					:linksPublished="profile.linksPublished"
-					:diggs="profile.diggs"
-					:register_date="profile.register_date"
-					></profile-card>
-				</v-flex>
-			</v-layout>
-			
-		</v-flex>
-	</v-layout>
+<template lang="pug">
+	v-layout(row wrap)
+		v-flex xs12
+			v-layout(row wrap)
+				v-flex(xs6)
+					input-profile(v-model="inputProfile" @click="getProfileInfo")
+			v-layout(row wrap)
+				v-flex(xs6)
+					profile-card( 
+						:login="profile.login" 
+						:avatarImg="profile.avatar" 
+						:ranking="profile.ranking" 
+						:description="profile.description" 
+						:sex="profile.sex" 
+						:linksAdded="profile.linksAdded"
+						:linksPublished="profile.linksPublished"
+						:diggs="profile.diggs"
+						:register_date="profile.register_date"
+					)
 </template>
 <script>
 import axios from 'axios'
@@ -59,7 +52,6 @@ export default {
 				this.loading = true
 				await axios.get('http://localhost:8081/profile/' + this.inputProfile)
 				.then(res => {
-					console.log(res.data)
 					this.profile.login = res.data.login
 					this.profile.avatar = res.data.avatar
 					this.profile.description = res.data.about

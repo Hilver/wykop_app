@@ -1,15 +1,9 @@
-<template>
-	<v-container fluid>
-		<v-layout row wrap>
-			<v-flex xs3>
-				
-			</v-flex>
-			<v-flex xs9>
-				<profile></profile>
-			</v-flex>
-		</v-layout>
-	</v-container>
-
+<template lang="pug">
+	v-container(fluid)
+		v-layout(row wrap)
+			v-flex(xs3)
+			v-flex(xs9)
+				profile
 </template>
 
 <script>
