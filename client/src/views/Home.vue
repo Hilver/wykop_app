@@ -8,9 +8,9 @@
 import Dashboard from './Dashboard.vue'
 
 export default {
-  name: 'dashboard',
-  components: {
-	Dashboard
-  }
+	name: 'dashboard',
+	components: {
+		Dashboard
+	}
 }
 </script>

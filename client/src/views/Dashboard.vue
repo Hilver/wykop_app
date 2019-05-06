@@ -13,11 +13,11 @@ export default {
 	components: {
 		Profile
 	},
-    data: () => {
+	data: () => {
 		return {
 			
 		}
-    }
+	}
 }
 </script>
 

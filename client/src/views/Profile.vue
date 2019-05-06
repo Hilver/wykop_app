@@ -1,6 +1,6 @@
 <template lang="pug">
 	v-layout(row wrap)
-		v-flex xs12
+		v-flex(xs12)
 			v-layout(row wrap)
 				v-flex(xs6)
 					input-profile(v-model="inputProfile" @click="getProfileInfo")
@@ -51,17 +51,17 @@ export default {
 			try {
 				this.loading = true
 				await axios.get('http://localhost:8081/profile/' + this.inputProfile)
-				.then(res => {
-					this.profile.login = res.data.login
-					this.profile.avatar = res.data.avatar
-					this.profile.description = res.data.about
-					this.profile.ranking = res.data.rank
-					this.profile.linksAdded = res.data.links_added_count,
-					this.profile.linksPublished = res.data.links_published_count
-					this.profile.sex = res.data.sex
-					this.profile.diggs = res.data.diggs
-					this.profile.register_date = res.data.signup_at
-				})
+					.then(res => {
+						this.profile.login = res.data.login
+						this.profile.avatar = res.data.avatar
+						this.profile.description = res.data.about
+						this.profile.ranking = res.data.rank
+						this.profile.linksAdded = res.data.links_added_count,
+						this.profile.linksPublished = res.data.links_published_count
+						this.profile.sex = res.data.sex
+						this.profile.diggs = res.data.diggs
+						this.profile.register_date = res.data.signup_at
+					})
 				this.loading = false
 			} catch (err) {
 				this.errorMsg = err

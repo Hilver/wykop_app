@@ -2,7 +2,7 @@
     div
         v-layout(row wrap)
             v-flex(xs6)
-                img(:src="avatarImg" :class="{'blue-border': sex === 'male', 'pink-border': sex === 'female'}")    
+                img(:src="avatarImg" :class="[sex === 'male' ? 'blue-border' : 'pink-border']")    
             v-flex(xs6)
                 p Login: {{ login }}
                 p Opis: {{ description }}
@@ -60,8 +60,6 @@
                 return ((this.linksPublished / this.linksAdded) * 100).toFixed(2)
             }
         }
-            
-        
     }
 </script>
 

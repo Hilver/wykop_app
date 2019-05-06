@@ -8,31 +8,31 @@
 
 </template>
 <script>
-    export default {
-        props: {
-            value: {
-                type: String,
-                default: ''
-            }
-        },
-        data () {
-            return {
-                inputValue: this.value
-            }
-        },
-        methods: {
-            clickHandler (event) {
-                this.$emit('click', event)
-            }
-        },
-        watch: {
-            inputValue: {
-                handler (value) {
-                    this.$emit('input', value)
-                }
-            }
-        }
-    }
+export default {
+	props: {
+		value: {
+			type: String,
+			default: ''
+		}
+	},
+	data () {
+		return {
+			inputValue: this.value
+		}
+	},
+	methods: {
+		clickHandler (event) {
+			this.$emit('click', event)
+		}
+	},
+	watch: {
+		inputValue: {
+			handler (value) {
+				this.$emit('input', value)
+			}
+		}
+	}
+}
 </script>
 
 <style scoped>
