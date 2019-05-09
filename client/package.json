@@ -43,6 +43,9 @@
       "indent": [
         "error",
         "tab"
+      ],
+      "no-trailing-spaces": [
+        "error"
       ]
     },
     "parserOptions": {

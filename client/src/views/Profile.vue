@@ -7,15 +7,7 @@
 			v-layout(row wrap)
 				v-flex(xs6)
 					profile-card( 
-						:login="profile.login" 
-						:avatarImg="profile.avatar" 
-						:ranking="profile.ranking" 
-						:description="profile.description" 
-						:sex="profile.sex" 
-						:linksAdded="profile.linksAdded"
-						:linksPublished="profile.linksPublished"
-						:diggs="profile.diggs"
-						:register_date="profile.register_date"
+						:profileData='profile'
 					)
 </template>
 <script>
@@ -32,16 +24,7 @@ export default {
 	data() {
 		return {
 			inputProfile: '',
-			profile: {
-				login: '',
-				avatar: '',
-				description: '',
-				ranking: null,
-				linksAdded: null,
-				linksPublished: null,
-				sex: null,
-				register_date: ''
-			},
+			profile: {},
 			errorMsg: null,
 			loading: false
 		}
@@ -52,15 +35,8 @@ export default {
 				this.loading = true
 				await axios.get('http://localhost:8081/profile/' + this.inputProfile)
 					.then(res => {
-						this.profile.login = res.data.login
-						this.profile.avatar = res.data.avatar
-						this.profile.description = res.data.about
-						this.profile.ranking = res.data.rank
-						this.profile.linksAdded = res.data.links_added_count,
-						this.profile.linksPublished = res.data.links_published_count
-						this.profile.sex = res.data.sex
-						this.profile.diggs = res.data.diggs
-						this.profile.register_date = res.data.signup_at
+						console.log(res)
+						this.profile = res.data
 					})
 				this.loading = false
 			} catch (err) {
