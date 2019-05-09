@@ -36,9 +36,9 @@ export default {
 <style lang="sass" scoped>
 
 .blue-border
-	border: 2px solid blue
+	border: 2px solid #46ABF2
 
 .pink-border
-	border: 2px solid pink
+	border: 2px solid #F246D0
 
 </style>
