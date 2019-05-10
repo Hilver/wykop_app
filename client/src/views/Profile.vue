@@ -13,8 +13,8 @@
 <script>
 import axios from 'axios'
 
-import InputProfile from '../components/modules/InputProfile.vue'
-import ProfileCard from '../components/modules/ProfileCard.vue'
+import InputProfile from '../components/Profile/InputProfile.vue'
+import ProfileCard from '../components/Profile/ProfileCard.vue'
 
 export default {
 	components: {

@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import ProfileInfo from '../Profile/ProfileInfo'
-import ProfileStats from '../Profile/ProfileStats'
+import ProfileInfo from './ProfileInfo'
+import ProfileStats from './ProfileStats'
 
 export default {
 	components: {
