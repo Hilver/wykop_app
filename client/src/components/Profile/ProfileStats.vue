@@ -82,13 +82,13 @@ export default {
 	computed: {
 		effectiveness() {
 			return (this.linksPublished && this.linksPublished) ?
-				Number(((this.linksPublished / this.linksAdded) * 100).toFixed(2)) :
+				((this.linksPublished / this.linksAdded) * 100).toFixed(2) :
 				null
 		},
 		digsPerDay() {
 			const strDate = this.register_date.split(' ')[0]
-			return this.diggs ? 
-				Number((this.diggs/currentDateDiff(strDate)).toFixed(2)) :
+			return this.diggs ?
+				(this.diggs/currentDateDiff(strDate)).toFixed(2) :
 				0
 		}
 	}

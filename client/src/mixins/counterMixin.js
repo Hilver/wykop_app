@@ -11,7 +11,7 @@ export const counterMixin = {
 			default: 0
 		},
 		total: {
-			type: Number,
+			type: [Number, String],
 			default: 0
 		}
 	},

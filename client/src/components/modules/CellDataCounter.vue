@@ -40,10 +40,7 @@ export default {
 			type: Number,
 			required: false
 		},
-		total: {
-			type: Number,
-			default: null
-		},
+		total: [Number, String],
 		width: {
 			type: Number,
 			required: false
