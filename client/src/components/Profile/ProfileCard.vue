@@ -5,6 +5,8 @@
 				:avatarImg='profileData.avatar'
 				:description='profileData.about'
 				:login='profileData.login'
+				:ranking='profileData.rank'
+				:register_date='profileData.signup_at'
 				:sex='profileData.sex'
 				:size='150'
 			)
@@ -14,7 +16,6 @@
 				:diggs='profileData.diggs'
 				:linksAdded='profileData.links_added_count'
 				:linksPublished='profileData.links_published_count'
-				:ranking='profileData.rank'
 				:register_date='profileData.signup_at'
 			)
 </template>
