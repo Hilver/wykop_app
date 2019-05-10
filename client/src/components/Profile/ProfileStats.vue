@@ -2,8 +2,6 @@
 	v-layout(row wrap)
 		v-flex(xs12)
 			.title Statistics
-			.subheading.font-weight-bold.my-1(v-if='ranking') # {{ ranking }}
-			.body-2.my-1 Data rejestracji: {{ register_date }}
 		v-flex(xs12 md6)
 			cell-data-counter(
 				name='Dodane'
@@ -67,10 +65,6 @@ export default {
 			default: null
 		},
 		linksPublished: {
-			type: Number,
-			default: null
-		},
-		ranking: {
 			type: Number,
 			default: null
 		},

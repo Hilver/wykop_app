@@ -1,9 +1,15 @@
 <template lang="pug">
 	div
-		Avatar(:photoUrl='avatarImg' :size='size' :sex='sex')
-		.title.my-1 {{ login }}
+		Avatar(:photoUrl='avatarImg' :ranking='ranking' :size='size' :sex='sex')
+		.title.my-1(:class="[(ranking <= 1000 && ranking) ? 'crimsonColorRank' : 'orangeColorRank']") {{ login }}
 		v-divider.my-2(v-if='description' class='divider')
 		.subheading.my-1 {{description }}
+		v-chip(color='#4383AF' text-color='white')
+			v-avatar
+				v-icon(small) fas fa-birthday-cake
+			|	{{ register_date }}
+			
+			
 </template>
 <script>
 import Avatar from './Avatar'
@@ -25,6 +31,8 @@ export default {
 			type: String,
 			default: null
 		},
+		ranking: [Number],
+		register_date: [String],
 		sex: {
 			type: String,
 			default: 'male'

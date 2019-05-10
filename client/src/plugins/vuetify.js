@@ -8,7 +8,8 @@ Vue.use(Vuetify, {
 	icons: {
 		'cancel': 'fas fa-ban',
 		'menu': 'fas fa-ellipsis-v',
-		'user': 'fas fa-user'
+		'user': 'fas fa-user',
+		'cake': 'fas fa-birthday-cake'
 	},
 	lang: {
 		locales: { pl },
