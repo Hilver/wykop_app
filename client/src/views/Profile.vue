@@ -6,37 +6,41 @@
 					input-profile(v-model="inputProfile" @click="getProfileInfo")
 			v-layout(row wrap)
 				v-flex(xs6)
-					profile-card( 
-						:profileData='profile'
-					)
+					FadeTransition
+						profile-card(
+							v-if="Object.keys(profileData).length"
+							:profileData='profileData'
+						)
 </template>
 <script>
 import axios from 'axios'
 
 import InputProfile from '../components/Profile/InputProfile.vue'
 import ProfileCard from '../components/Profile/ProfileCard.vue'
+import FadeTransition from '../components/utils/Transitions/FadeTransition'
 
 export default {
 	components: {
 		InputProfile,
-		ProfileCard
+		ProfileCard,
+		FadeTransition
 	},
 	data() {
 		return {
 			inputProfile: '',
-			profile: {},
+			profileData: {},
 			errorMsg: null,
 			loading: false
 		}
 	},
 	methods: {
-		async getProfileInfo () {			
+		async getProfileInfo () {
 			try {
 				this.loading = true
 				await axios.get('http://localhost:8081/profile/' + this.inputProfile)
 					.then(res => {
 						console.log(res)
-						this.profile = res.data
+						this.profileData = res.data
 					})
 				this.loading = false
 			} catch (err) {

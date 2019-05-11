@@ -2,14 +2,12 @@
 	div
 		Avatar(:photoUrl='avatarImg' :ranking='ranking' :size='size' :sex='sex')
 		.title.my-1(:class="[(ranking <= 1000 && ranking) ? 'crimsonColorRank' : 'orangeColorRank']") {{ login }}
-		v-divider.my-2(v-if='description' class='divider')
-		.subheading.my-1 {{description }}
 		v-chip(color='#4383AF' text-color='white')
 			v-avatar
 				v-icon(small) fas fa-birthday-cake
 			|	{{ register_date }}
-			
-			
+		v-divider.my-2(v-if='description' class='divider')
+		.subheading.my-1 {{description }}
 </template>
 <script>
 import Avatar from './Avatar'
@@ -44,10 +42,7 @@ export default {
 	}
 }
 </script>
-
 <style lang="sass" scoped>
 .divider
 	width: 80%
 </style>
-
-

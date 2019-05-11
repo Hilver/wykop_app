@@ -51,7 +51,8 @@ export const counterMixin = {
 		total: {
 			handler: function(val) {
 				this.counter(val, 1)
-			}
+			},
+			immediate: true
 		}
 	}
 }
