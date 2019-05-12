@@ -19,10 +19,10 @@ exports.get_index_profile = (req, res) => {
 				if(result.data !== null) {
 					res.status(201).json(result.data)
 				} else {
-					res.status(404).json({'message': 'User can not be found!'})
+					res.status(404).json({'error': 'User can not be found!'})
 				}
 			})
 		     .catch(err => {
-		     	res.status(500).json({'error': err})
+		     	res.status(500).json({'error': 'Server is offline, please check again in a few minutes'})
 			})	    
 }

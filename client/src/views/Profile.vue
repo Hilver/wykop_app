@@ -3,7 +3,11 @@
 		v-flex(xs12)
 			v-layout(row wrap)
 				v-flex(xs6)
-					input-profile(v-model="inputProfile" @click="getProfileInfo")
+					input-profile(
+						:errorMsg='errorMsg'
+						v-model="inputProfile"
+						@click="getProfileInfo"
+					)
 			v-layout(row wrap)
 				v-flex(xs6)
 					FadeTransition
@@ -37,14 +41,18 @@ export default {
 		async getProfileInfo () {
 			try {
 				this.loading = true
-				await axios.get('http://localhost:8081/profile/' + this.inputProfile)
+				await axios.get('http://localhost:8082/profile/' + this.inputProfile)
 					.then(res => {
 						console.log(res)
 						this.profileData = res.data
 					})
 				this.loading = false
 			} catch (err) {
-				this.errorMsg = err
+				if(err.response.status === 404) {
+					this.errorMsg = 'User can not be found'
+				} else {
+					this.errorMsg = err.response.data.error
+				}			
 			}
 		}
 	}

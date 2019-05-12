@@ -26,7 +26,7 @@
 				:circle='true'
 				:total='diggs'
 				)
-			
+
 		v-flex(xs12 md6).my-2.text-xs-center
 			cell-data-counter(
 				name='Skuteczność'
