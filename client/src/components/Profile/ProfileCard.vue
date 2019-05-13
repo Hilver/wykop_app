@@ -14,8 +14,12 @@
 			profile-stats(
 				:comments='profileData.comments_count'
 				:diggs='profileData.diggs'
+				:followers='profileData.followers'
+				:following='profileData.following'
 				:linksAdded='profileData.links_added_count'
 				:linksPublished='profileData.links_published_count'
+				:mirkoComments='profileData.entries_comments'
+				:mirkoEntries='profileData.entries'
 				:register_date='profileData.signup_at'
 			)
 </template>
