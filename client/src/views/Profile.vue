@@ -46,13 +46,18 @@ export default {
 						console.log(res)
 						this.profileData = res.data
 					})
+				this.errorMsg = null
 				this.loading = false
 			} catch (err) {
 				if(err.response.status === 404) {
 					this.errorMsg = 'User can not be found'
+					this.profileData = {}
+					this.loading = false
 				} else {
 					this.errorMsg = err.response.data.error
-				}			
+					this.profileData = {}
+					this.loading = false
+				}
 			}
 		}
 	}
