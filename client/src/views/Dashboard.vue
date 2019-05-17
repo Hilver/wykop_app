@@ -1,17 +1,20 @@
 <template lang="pug">
 	v-container(fluid)
 		v-layout(row wrap)
-			v-flex(xs3)
-			v-flex(xs9)
+			v-flex(xs6)
 				profile
+			v-flex(xs6)
+				ranking-table
 </template>
 
 <script>
 import Profile from './Profile.vue'
+import RankingTable from '../components/Ranking/RankingTable'
 
 export default {
 	components: {
-		Profile
+		Profile,
+		RankingTable
 	},
 	data: () => {
 		return {
@@ -20,7 +23,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped lang="sass">
-
-</style>

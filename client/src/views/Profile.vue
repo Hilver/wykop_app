@@ -1,14 +1,14 @@
 <template lang="pug">
 	v-layout(row wrap)
 		v-flex(xs12)
-			v-layout(row wrap)
+			v-layout(row wrap justify-center)
 				v-flex(xs6)
 					input-profile(
 						:errorMsg='errorMsg'
 						v-model="inputProfile"
 						@click="getProfileInfo"
 					)
-			v-layout(row wrap)
+			v-layout(row wrap justify-center)
 				v-flex(xs6)
 					FadeTransition
 						profile-card(
