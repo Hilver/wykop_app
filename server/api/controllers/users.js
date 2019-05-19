@@ -4,8 +4,8 @@ const User = require('../models/users')
 
 exports.create_user = (req, res) => {
 	User.create({
-		id: uuidv4,
-		user_nickname: req.body.user_nickname,
+		id: uuidv4(),
+		nickname: req.params.user,
 		links_added_count: req.body.links_added_count,
 		links_published_count: req.body.links_published_count,
 		comments_added: req.body.comments_added,
@@ -19,6 +19,7 @@ exports.create_user = (req, res) => {
 			message: 'User has been created!'
 		})
 	}).catch((err) => {
+		console.log(err)
 		res.send({
 			message: err
 		})

@@ -18,8 +18,9 @@
 				:following='profileData.following'
 				:linksAdded='profileData.links_added_count'
 				:linksPublished='profileData.links_published_count'
+				:login='profileData.login'
 				:mirkoComments='profileData.entries_comments'
-				:mirkoEntries='profileData.entries'
+				:mirkoEntries='profileData.entries'				
 				:register_date='profileData.signup_at'
 			)
 </template>
