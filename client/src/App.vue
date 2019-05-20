@@ -2,9 +2,18 @@
 	div#app
 		v-app
 			div#nav
-				router-link(to="/") Home
+				toolbar
+				//- router-link(to="/") Home
 			router-view
 </template>
+<script>
+import Toolbar from './components/Toolbar//Toolbar'
+export default {
+	components: {
+		Toolbar
+	}
+}
+</script>
 <style lang="sass">
 .greenColorRank
 	color: #389B38
