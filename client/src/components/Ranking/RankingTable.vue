@@ -9,19 +9,46 @@
 				:items='items'
 				)
 		v-flex(xs12)
-			data-row
+			data-row(
+				v-for='(data, i) in rankingData'
+				:key='i'
+				:index='(i + 1)'
+				:nickname='data.user_nickname'
+				:value='data[value]'
+				:photoUrl='data.photoUrl'
+				)
 
 </template>
 <script>
+import axios from 'axios'
 import DataRow from './DataRow'
+
 export default {
 	components: {
 		DataRow
 	},
 	data() {
 		return {
-			items: ['foo', 'bar', 'yolo'],
-			value: ''
+			items: ['effectiveness', 'links_added_count', 'links_published_count', 'comments_added', 'diggs', 'avg_daily_digg', 'followers'],
+			value: '',
+			rankingData: ''
+		}
+	},
+	methods: {
+		getRankingData(query) {
+			axios.get(`http://localhost:8082/users/ranking/${query}`)
+				.then(res => {
+					console.log(res)
+					this.rankingData = res.data.users
+				})
+				.catch(err => {
+					console.log(err)
+				})
+		}
+	},
+	watch: {
+		value: function(val) {
+			this.getRankingData(val)
 		}
 	}
 }

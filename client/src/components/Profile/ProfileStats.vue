@@ -53,6 +53,10 @@ export default {
 			type: String,
 			default: ''
 		},
+		photoUrl: {
+			type: String,
+			default: ''
+		},
 		register_date: {
 			type: String,
 			default: ''
@@ -88,7 +92,8 @@ export default {
 				diggs: this.diggs,
 				effectiveness: Number(this.effectiveness),
 				avg_daily_digg: Number(this.digsPerDay),
-				followers: this.followers
+				followers: this.followers,
+				photoUrl: this.photoUrl
 			}
 		},
 		effectiveness() {
@@ -182,11 +187,10 @@ export default {
 		},
 		conditions() {
 			return (
-				this.comments_count > 500 ||
+				this.comments > 500 ||
 				this.diggs > 10000 ||
-				this.followrs > 100 ||
-				this.links_added_count > 100 ||
-				this.effectiveness > 10 ||
+				this.followers > 100 ||
+				this.linksAdded > 100 ||
 				this.digsPerDay > 5
 			) ? true : false
 		}
@@ -195,6 +199,7 @@ export default {
 		this.conditions && this.insertRankingData()
 	},
 	updated() {
+		console.log(this.conditions)
 		this.conditions && this.insertRankingData()
 	}
 }

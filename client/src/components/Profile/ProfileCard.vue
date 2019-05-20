@@ -20,7 +20,8 @@
 				:linksPublished='profileData.links_published_count'
 				:login='profileData.login'
 				:mirkoComments='profileData.entries_comments'
-				:mirkoEntries='profileData.entries'				
+				:mirkoEntries='profileData.entries'
+				:photoUrl='profileData.avatar'
 				:register_date='profileData.signup_at'
 			)
 </template>
