@@ -1,6 +1,6 @@
 <template lang="pug">
 	v-layout(row wrap)
-		v-flex(xs12 md6)
+		v-flex(md12 lg6)
 			profile-info(
 				:avatarImg='profileData.avatar'
 				:description='profileData.about'
@@ -10,7 +10,7 @@
 				:sex='profileData.sex'
 				:size='150'
 			)
-		v-flex(xs12 md6)
+		v-flex(md12 lg6)
 			profile-stats(
 				:comments='profileData.comments_count'
 				:diggs='profileData.diggs'
@@ -18,8 +18,10 @@
 				:following='profileData.following'
 				:linksAdded='profileData.links_added_count'
 				:linksPublished='profileData.links_published_count'
+				:login='profileData.login'
 				:mirkoComments='profileData.entries_comments'
 				:mirkoEntries='profileData.entries'
+				:photoUrl='profileData.avatar'
 				:register_date='profileData.signup_at'
 			)
 </template>

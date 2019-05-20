@@ -14,6 +14,7 @@ module.exports.create = user => {
         diggs: user.diggs,
         effectiveness: user.effectiveness,
         avg_daily_digg: user.avg_daily_digg,
-        followers: user.followers        
+        followers: user.followers,
+        photoUrl: user.photoUrl
 	}).save()
 }

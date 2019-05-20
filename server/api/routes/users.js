@@ -5,7 +5,7 @@ const usersControllers = require('../controllers/users.js')
 
 router.get('/ranking/:query', usersControllers.get_users)
 
-router.post('/create', usersControllers.create_user)
+router.post('/create/:user', usersControllers.create_user)
 
 router.put('/update/:user', usersControllers.update_user)
 

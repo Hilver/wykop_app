@@ -2,9 +2,11 @@
 	v-layout(row wrap)
 		tabs-component(
 			:items='this.tabItems'
+			color='#4383AF'
 		)
 </template>
 <script>
+import axios from 'axios'
 import TabsComponent from '../modules/tabsComponent'
 import WykopStats from './WykopStats'
 import currentDateDiff from '../utils/Time/currentDateDiff'
@@ -43,17 +45,58 @@ export default {
 		mirkoEntries: {
 			type: Number,
 			default: null
-		},
+		},		
 		linksPublished: {
 			type: Number,
 			default: null
+		},
+		login: {
+			type: String,
+			default: ''
+		},
+		photoUrl: {
+			type: String,
+			default: ''
 		},
 		register_date: {
 			type: String,
 			default: ''
 		}
 	},
+	methods: {
+		insertRankingData() {
+			axios.post(`http://localhost:8082/users/create/${this.login}`, this.profileData
+			).then(res => {
+				if (res.data.message.sqlMessage !== 'undefined' && res.data.message.sqlMessage.indexOf('Duplicate entry') !== -1) {
+					this.updateRankingData()
+				}
+				return res.data.message
+			}).catch(err => {
+				return err
+			})
+		},
+		updateRankingData() {
+			axios.put(`http://localhost:8082/users/update/${this.login}`, this.profileData
+			).then(res => {
+				return res.data.message
+			}).catch(err => {
+				return err
+			})
+		}
+	},
 	computed: {
+		profileData() {
+			return {
+				links_added_count: this.linksAdded,
+				links_published_count: this.linksPublished,
+				comments_added: this.comments,
+				diggs: this.diggs,
+				effectiveness: Number(this.effectiveness),
+				avg_daily_digg: Number(this.digsPerDay),
+				followers: this.followers,
+				photoUrl: this.photoUrl
+			}
+		},
 		effectiveness() {
 			return (this.linksPublished && this.linksPublished) ?
 				((this.linksPublished / this.linksAdded) * 100).toFixed(2) :
@@ -112,7 +155,7 @@ export default {
 					total: this.effectiveness
 				},
 				{
-					name: 'Śr. dzienny wykop',
+					name: 'Dzienny wykop',
 					circle: true,
 					decimal: 2,
 					total: this.digsPerDay
@@ -142,7 +185,23 @@ export default {
 					total: this.following
 				}
 			]
+		},
+		conditions() {
+			return (
+				this.comments > 500 ||
+				this.diggs > 10000 ||
+				this.followers > 100 ||
+				this.linksAdded > 100 ||
+				this.digsPerDay > 5
+			) ? true : false
 		}
+	},
+	mounted() {
+		this.conditions && this.insertRankingData()
+	},
+	updated() {
+		console.log(this.conditions)
+		this.conditions && this.insertRankingData()
 	}
 }
 </script>

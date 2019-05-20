@@ -1,8 +1,9 @@
 <template lang="pug">
 	div#app
-		div#nav
-			router-link(to="/") Home
-		router-view
+		v-app
+			div#nav
+				router-link(to="/") Home
+			router-view
 </template>
 <style lang="sass">
 .greenColorRank
