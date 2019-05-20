@@ -26,3 +26,27 @@ exports.get_index_profile = (req, res) => {
 		     	res.status(500).json({'error': 'Server is offline, please check again in a few minutes'})
 			})	    
 }
+
+exports.get_last_diggs = (req, res) => {
+	const profile = req.params.login
+	const lastDiggURL = `https://a2.wykop.pl/Profiles/Digged/${profile}/appkey/${process.env.APP_KEY}/page/1`
+	const otherParams = {
+		method: 'GET',
+		headers: {
+		   'apisign': apisign(profileURL)
+		}
+	}
+
+	fetch(lastDiggURL)
+		.then(data => data.json())
+		.then(result => {
+			if(result.data !== null) {
+				res.status(201).json(result.data)
+			} else {
+				res.status(404).json({'error': 'Last diggs can not be found!'})
+			}
+		})
+		 .catch(err => {
+			 res.status(500).json({'error': 'Server is offline, please check again in a few minutes'})
+		})
+}

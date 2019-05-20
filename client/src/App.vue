@@ -7,7 +7,7 @@
 			router-view
 </template>
 <script>
-import Toolbar from './components/Toolbar//Toolbar'
+import Toolbar from './components/Toolbar/Toolbar'
 export default {
 	components: {
 		Toolbar
