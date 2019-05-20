@@ -1,5 +1,5 @@
 <template lang="pug">
-	div
+	div.text-sm-center.text-xs-center
 		Avatar(:photoUrl='avatarImg' :ranking='ranking' :size='size' :sex='sex')
 		.title.my-1(:class="[(ranking <= 1000 && ranking) ? 'crimsonColorRank' : 'orangeColorRank']") {{ login }}
 		v-chip(color='#4383AF' text-color='white')

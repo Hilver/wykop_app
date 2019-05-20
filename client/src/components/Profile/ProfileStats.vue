@@ -2,6 +2,7 @@
 	v-layout(row wrap)
 		tabs-component(
 			:items='this.tabItems'
+			color='#4383AF'
 		)
 </template>
 <script>
