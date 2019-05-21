@@ -1,6 +1,6 @@
 <template lang="pug">
-	v-layout(row wrap)
-		v-flex(xs8)
+	v-layout(row wrap align-center)
+		v-flex(xs9)
 			v-text-field(
 				:error-messages='errorMessage'
 				v-model="inputValue"
@@ -8,9 +8,9 @@
 				@focus='this.focusHandler'
 				@keyup.enter='clickHandler'
 			)
-		v-flex(xs4)
+		v-flex(xs3)
 			v-btn(
-				color="green"
+				color="#4383AF"
 				dark
 				@click="clickHandler"
 			)

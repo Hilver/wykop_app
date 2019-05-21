@@ -1,6 +1,6 @@
 <template lang="pug">
 	v-layout(row wrap)
-		v-flex(md12 lg6)
+		v-flex(md12 lg4)
 			profile-info(
 				:avatarImg='profileData.avatar'
 				:description='profileData.about'
@@ -10,7 +10,7 @@
 				:sex='profileData.sex'
 				:size='150'
 			)
-		v-flex(md12 lg6)
+		v-flex(md12 lg8)
 			profile-stats(
 				:comments='profileData.comments_count'
 				:diggs='profileData.diggs'

@@ -70,6 +70,6 @@ export default {
 	height: 20px
 	color: #ffffff
 	font-weight: bold
-	font-size: 17px
+	font-size: 15px
 
 </style>

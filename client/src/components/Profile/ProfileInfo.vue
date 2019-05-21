@@ -6,7 +6,7 @@
 			v-avatar
 				v-icon(small) fas fa-birthday-cake
 			|	{{ register_date }}
-		v-divider.my-2(v-if='description' class='divider')
+		v-divider.my-2(v-if='description')
 		.subheading.my-1 {{description }}
 </template>
 <script>
@@ -42,7 +42,3 @@ export default {
 	}
 }
 </script>
-<style lang="sass" scoped>
-.divider
-	width: 80%
-</style>
