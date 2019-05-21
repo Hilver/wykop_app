@@ -37,7 +37,7 @@ exports.get_last_diggs = (req, res) => {
 		}
 	}
 
-	fetch(lastDiggURL)
+	fetch(lastDiggURL, otherParams)
 		.then(data => data.json())
 		.then(result => {
 			if(result.data !== null) {
