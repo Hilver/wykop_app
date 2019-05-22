@@ -33,7 +33,7 @@ exports.get_last_diggs = (req, res) => {
 	const otherParams = {
 		method: 'GET',
 		headers: {
-		   'apisign': apisign(profileURL)
+		   'apisign': apisign(lastDiggURL)
 		}
 	}
 

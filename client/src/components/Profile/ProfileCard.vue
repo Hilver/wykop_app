@@ -9,7 +9,7 @@
 				:register_date='profileData.signup_at'
 				:sex='profileData.sex'
 				:size='150'
-			)
+			).pa-2
 		v-flex(md12 lg8)
 			profile-stats(
 				:comments='profileData.comments_count'
@@ -23,17 +23,21 @@
 				:mirkoEntries='profileData.entries'
 				:photoUrl='profileData.avatar'
 				:register_date='profileData.signup_at'
-			)
+			).pa-2
+		v-flex(xs12)
+			StalkoTableWrapper(:login='profileData.login').pa-2
 </template>
 
 <script>
 import ProfileInfo from './ProfileInfo'
 import ProfileStats from './ProfileStats'
+import StalkoTableWrapper from '../Profile/StalkoTableWrapper'
 
 export default {
 	components: {
 		ProfileInfo,
-		ProfileStats
+		ProfileStats,
+		StalkoTableWrapper
 	},
 	props: {
 		profileData: {

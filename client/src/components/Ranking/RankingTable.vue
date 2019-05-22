@@ -1,8 +1,8 @@
 <template lang="pug">
-	v-layout(row wrap)
-		v-flex(xs8 align-self-center)
+	v-layout(row wrap align-center).mt-1
+		v-flex(xs7)
 			span.title Hall Of Fame
-		v-flex(xs4 text-xs-right)
+		v-flex(xs5 text-xs-right)
 			v-select(
 				v-model='value'
 				label='Wybierz ranking'
