@@ -24,14 +24,19 @@
 				:photoUrl='profileData.avatar'
 				:register_date='profileData.signup_at'
 			)
+		v-flex(xs12)
+			data-table(:dataItems='lastDiggs')
 </template>
 
 <script>
+import axios from 'axios'
 import ProfileInfo from './ProfileInfo'
 import ProfileStats from './ProfileStats'
+import DataTable from '../Table/DataTable'
 
 export default {
 	components: {
+		DataTable,
 		ProfileInfo,
 		ProfileStats
 	},
@@ -40,6 +45,36 @@ export default {
 			type: Object,
 			required: true
 		}
+	},
+	data() {
+		return {
+			lastDiggs: []
+		}
+	},
+	methods: {
+		getLastDiggs(login) {
+			axios.get(`http://localhost:8082/profile/diggs/${login}`)
+				.then(res => this.lastDiggs = res.data.map(el =>(
+					{
+						title: el.title,
+						date: el.date,
+						source: el.source_url
+					})
+				))
+				.catch(err => console.log(err))
+		}
+	},
+	watch: {
+		profileData: {
+			handler: function(val) {
+				this.getLastDiggs(val.login)
+			},
+			immediate: true,
+			deep: true
+		}
+	},
+	mounted() {
+		this.getLastDiggs(this.profileData.login)
 	}
 }
 </script>

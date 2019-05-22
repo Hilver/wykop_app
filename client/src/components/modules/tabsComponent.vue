@@ -1,6 +1,5 @@
 <template lang="pug">
-div
-	template(v-slot:extension)
+	div
 		v-tabs(
 			v-model='model'
 			centered
@@ -13,13 +12,13 @@ div
 				:href="`#tab-${i}`"
 			)
 				|	{{ item.name }}
-	v-tabs-items(v-model='model')
-		v-tab-item(
-			v-for="(item, i) in items"
-			:key="i"
-			:value="`tab-${i}`"
-		)
-			component(:is='item.activeComponent' v-bind='item.props')
+		v-tabs-items(v-model='model')
+			v-tab-item(
+				v-for="(item, i) in items"
+				:key="i"
+				:value="`tab-${i}`"
+			)
+				component(:is='item.activeComponent' v-bind='item.props')
 </template>
 <script>
 export default {
