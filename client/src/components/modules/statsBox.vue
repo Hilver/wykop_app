@@ -1,6 +1,6 @@
 <template lang="pug">
 	v-layout(row wrap)
-		v-flex(xs12 md6 v-for='statSetting in statSettings' :key='statSetting.name')
+		v-flex(xs6 v-for='statSetting in statSettings' :key='statSetting.name')
 			cell-data-counter(
 				:name='statSetting.name'
 				:circle='statSetting.circle'

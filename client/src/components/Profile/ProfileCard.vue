@@ -9,7 +9,7 @@
 				:register_date='profileData.signup_at'
 				:sex='profileData.sex'
 				:size='150'
-			)
+			).pa-2
 		v-flex(md12 lg8)
 			profile-stats(
 				:comments='profileData.comments_count'
@@ -23,58 +23,27 @@
 				:mirkoEntries='profileData.entries'
 				:photoUrl='profileData.avatar'
 				:register_date='profileData.signup_at'
-			)
+			).pa-2
 		v-flex(xs12)
-			data-table(:dataItems='lastDiggs')
+			StalkoTableWrapper(:login='profileData.login').pa-2
 </template>
 
 <script>
-import axios from 'axios'
 import ProfileInfo from './ProfileInfo'
 import ProfileStats from './ProfileStats'
-import DataTable from '../Table/DataTable'
+import StalkoTableWrapper from '../Profile/StalkoTableWrapper'
 
 export default {
 	components: {
-		DataTable,
 		ProfileInfo,
-		ProfileStats
+		ProfileStats,
+		StalkoTableWrapper
 	},
 	props: {
 		profileData: {
 			type: Object,
 			required: true
 		}
-	},
-	data() {
-		return {
-			lastDiggs: []
-		}
-	},
-	methods: {
-		getLastDiggs(login) {
-			axios.get(`http://localhost:8082/profile/diggs/${login}`)
-				.then(res => this.lastDiggs = res.data.map(el =>(
-					{
-						title: el.title,
-						date: el.date,
-						source: el.source_url
-					})
-				))
-				.catch(err => console.log(err))
-		}
-	},
-	watch: {
-		profileData: {
-			handler: function(val) {
-				this.getLastDiggs(val.login)
-			},
-			immediate: true,
-			deep: true
-		}
-	},
-	mounted() {
-		this.getLastDiggs(this.profileData.login)
 	}
 }
 </script>

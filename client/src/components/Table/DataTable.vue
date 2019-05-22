@@ -1,12 +1,13 @@
 <template lang="pug">
 	v-data-table(
 		:items="dataItems"
-		class="elevation-1"
 		:pagination.sync="pagination"
 		hide-headers
 	)
 		template(v-slot:items="props")
-			td {{ props.item.title }}
+			td 
+				a(:href='props.item.source' target='_blank')
+					| {{ props.item.title }}
 			td.text-xs-right
 				chips-date(:dateString='props.item.date')
 </template>
@@ -31,3 +32,8 @@ export default {
 	}
 }
 </script>
+<style lang="sass" scoped>
+a 
+	color: #000
+	text-decoration: none
+</style>

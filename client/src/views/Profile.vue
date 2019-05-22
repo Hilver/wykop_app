@@ -2,16 +2,17 @@
 	v-layout(row wrap)
 		v-flex(xs12)
 			v-layout(row wrap justify-center)
-				v-flex(xs8)
+				v-flex(xs12 md8)
 					input-profile(
 						:errorMsg='errorMsg'
 						v-model="inputProfile"
 						@click="getProfileInfo"
 					)
 			v-layout(row wrap justify-center)
-				v-flex(xs8)
+				v-flex(xs12 md8)
 					FadeTransition
 						profile-card(
+							class="elevation-1"
 							v-if="Object.keys(profileData).length"
 							:profileData='profileData'
 						)
