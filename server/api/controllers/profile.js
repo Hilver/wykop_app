@@ -27,23 +27,24 @@ exports.get_index_profile = (req, res) => {
 			})	    
 }
 
-exports.get_last_diggs = (req, res) => {
+exports.get_specific_profile_data = (req, res) => {
 	const profile = req.params.login
-	const lastDiggURL = `https://a2.wykop.pl/Profiles/Digged/${profile}/appkey/${process.env.APP_KEY}/page/1`
+	const source = req.params.source
+	const specificDataURL = `https://a2.wykop.pl/Profiles/${source}/${profile}/appkey/${process.env.APP_KEY}/page/1`
 	const otherParams = {
 		method: 'GET',
 		headers: {
-		   'apisign': apisign(lastDiggURL)
+		   'apisign': apisign(specificDataURL)
 		}
 	}
 
-	fetch(lastDiggURL, otherParams)
+	fetch(specificDataURL, otherParams)
 		.then(data => data.json())
 		.then(result => {
 			if(result.data !== null) {
 				res.status(201).json(result.data)
 			} else {
-				res.status(404).json({'error': 'Last diggs can not be found!'})
+				res.status(404).json({'error': 'User data can not be found!'})
 			}
 		})
 		 .catch(err => {

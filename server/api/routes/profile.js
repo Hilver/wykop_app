@@ -5,6 +5,6 @@ const profileControllers = require('../controllers/profile.js')
 
 router.get('/:login', profileControllers.get_index_profile)
 
-router.get('/diggs/:login', profileControllers.get_last_diggs)
+router.get('/:source/:login', profileControllers.get_specific_profile_data)
 
 module.exports = router
