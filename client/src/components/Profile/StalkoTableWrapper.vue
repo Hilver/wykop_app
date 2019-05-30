@@ -10,13 +10,24 @@
 				:items='items'
 				)
 		v-flex(xs12)
-			data-table(:dataItems='stalkoData')
+			data-table(
+				:dataItems='stalkoData'
+				:loading='true'
+			)
 </template>
 <script>
 import axios from 'axios'
 import DataTable from '../Table/DataTable'
 
-const stalkoSource = ['diggs']
+const stalkoSource = [
+	'added',
+	'commented',
+	'digged',
+	'published',
+	'entries',
+	'entriescomments',
+	'related'
+]
 
 export default {
 	name: 'StalkoTableWrapper',
@@ -26,26 +37,44 @@ export default {
 	props: {
 		login: {
 			type: String
-		}
+		},
+		initLoading: false,
+		errorMsg: ''
 	},
 	data() {
 		return {
-			items: ['Ostatnio wykopane'],
+			items: [
+				'Dodane znaleziska',
+				'Komentarze',
+				'Ostatnio wykopane',
+				'Opublikowane znaleziska',
+				'Wpisy na mirko',
+				'Komentarze na mirko',
+				'Powiązane znaleziska'
+				],
+			loading: this.initLoading,
 			stalkoData: [],
 			value: ''
 		}
 	},
 	methods: {
 		getStalkoData(source, login) {
+			this.loading = true
 			axios.get(`http://localhost:8082/profile/${source}/${login}`)
-				.then(res => this.stalkoData = res.data.map(el =>(
-					{
-						title: el.title,
-						date: el.date,
-						source: el.source_url
-					})
-				))
-				.catch(err => console.log(err))
+				.then(res => {
+					this.stalkoData = res.data.map(el =>(
+						{
+							title: el.title || el.body,
+							date: el.date,
+							source: el.source_url || `https://www.wykop.pl/wpis/${el.id}`
+						})
+					)
+					this.loading = false
+				})
+				.catch(err => {
+					this.errorMsg = err
+					this.loading = false
+				})
 		}
 	},
 	watch: {
@@ -57,6 +86,11 @@ export default {
 		login: {
 			handler: function(val) {
 				this.getStalkoData(stalkoSource[this.items.indexOf(this.value)], val)
+			}
+		},
+		initLoading: {
+			handler: function(val) {
+				this.loading = val
 			}
 		}
 	}

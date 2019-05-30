@@ -3,11 +3,12 @@
 		:items="dataItems"
 		:pagination.sync="pagination"
 		hide-headers
+		:loading='statusLoading'
 	)
 		template(v-slot:items="props")
-			td 
+			td
 				a(:href='props.item.source' target='_blank')
-					| {{ props.item.title }}
+					span(v-html='props.item.title')
 			td.text-xs-right
 				chips-date(:dateString='props.item.date')
 </template>
@@ -23,11 +24,23 @@ export default {
 		dataItems: {
 			type: Array,
 			default: () => []
+		},
+		loading: { 
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
 		return {
-			pagination: {}
+			pagination: {},
+			statusLoading: this.loading
+		}
+	},
+	watch: {
+		loading: {
+			handler: function(val) {
+				this.statusLoading = val
+			}
 		}
 	}
 }
