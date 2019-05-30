@@ -8,7 +8,7 @@
 		template(v-slot:items="props")
 			td
 				a(:href='props.item.source' target='_blank')
-					| {{ props.item.title }}
+					span(v-html='props.item.title')
 			td.text-xs-right
 				chips-date(:dateString='props.item.date')
 </template>

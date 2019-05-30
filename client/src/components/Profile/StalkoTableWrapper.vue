@@ -12,7 +12,7 @@
 		v-flex(xs12)
 			data-table(
 				:dataItems='stalkoData'
-				:loading='loading'
+				:loading='true'
 			)
 </template>
 <script>
@@ -38,7 +38,7 @@ export default {
 		login: {
 			type: String
 		},
-		loading: false,
+		initLoading: false,
 		errorMsg: ''
 	},
 	data() {
@@ -52,6 +52,7 @@ export default {
 				'Komentarze na mirko',
 				'Powiązane znaleziska'
 				],
+			loading: this.initLoading,
 			stalkoData: [],
 			value: ''
 		}
@@ -63,9 +64,9 @@ export default {
 				.then(res => {
 					this.stalkoData = res.data.map(el =>(
 						{
-							title: el.title,
+							title: el.title || el.body,
 							date: el.date,
-							source: el.source_url
+							source: el.source_url || `https://www.wykop.pl/wpis/${el.id}`
 						})
 					)
 					this.loading = false
@@ -85,6 +86,11 @@ export default {
 		login: {
 			handler: function(val) {
 				this.getStalkoData(stalkoSource[this.items.indexOf(this.value)], val)
+			}
+		},
+		initLoading: {
+			handler: function(val) {
+				this.loading = val
 			}
 		}
 	}
