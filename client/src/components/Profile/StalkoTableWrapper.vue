@@ -10,14 +10,16 @@
 				:items='items'
 				)
 		v-flex(xs12)
+			CircularProgress(v-if='loading')
 			data-table(
+				v-else
 				:dataItems='stalkoData'
-				:loading='true'
 			)
 </template>
 <script>
 import axios from 'axios'
 import DataTable from '../Table/DataTable'
+import CircularProgress from '../Progress/ProgressCircle.vue'
 
 const stalkoSource = [
 	'added',
@@ -32,13 +34,13 @@ const stalkoSource = [
 export default {
 	name: 'StalkoTableWrapper',
 	components: {
+		CircularProgress,
 		DataTable
 	},
 	props: {
 		login: {
 			type: String
 		},
-		initLoading: false,
 		errorMsg: ''
 	},
 	data() {
@@ -52,7 +54,7 @@ export default {
 				'Komentarze na mirko',
 				'Powiązane znaleziska'
 				],
-			loading: this.initLoading,
+			loading: false,
 			stalkoData: [],
 			value: ''
 		}
