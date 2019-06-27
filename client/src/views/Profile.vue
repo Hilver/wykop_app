@@ -8,9 +8,10 @@
 						v-model="inputProfile"
 						@click="getProfileInfo"
 					)
-			v-layout(row wrap justify-center)
+			v-layout(row wrap justify-center align-center)
 				v-flex(xs12 md8)
-					FadeTransition
+					CircularProgress(v-if='loading')
+					FadeTransition(v-else)
 						profile-card(
 							class="elevation-1"
 							v-if="Object.keys(profileData).length"
@@ -23,9 +24,11 @@ import axios from 'axios'
 import InputProfile from '../components/Profile/InputProfile.vue'
 import ProfileCard from '../components/Profile/ProfileCard.vue'
 import FadeTransition from '../components/utils/Transitions/FadeTransition'
+import CircularProgress from '../components/Progress/ProgressCircle.vue'
 
 export default {
 	components: {
+		CircularProgress,
 		InputProfile,
 		ProfileCard,
 		FadeTransition
