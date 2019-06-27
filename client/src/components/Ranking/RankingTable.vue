@@ -10,7 +10,9 @@
 				:items='items'
 				)
 		v-flex(xs12)
+			CircularProgress(v-if='loading')
 			data-row(
+				v-else
 				v-for='(data, i) in rankingData'
 				:key='i'
 				:classes='classColors[i]'
@@ -24,28 +26,34 @@
 <script>
 import axios from 'axios'
 import DataRow from './DataRow'
+import CircularProgress from '../Progress/ProgressCircle.vue'
 
 export default {
 	name: 'RankingTable',
 	components: {
+		CircularProgress,
 		DataRow
 	},
 	data() {
 		return {
 			classColors: ['yellow--text text--darken-2', 'blue-grey--text text--lighten-3', 'brown--text text--lighten-1'],
 			items: ['Efektywność', 'Dodane znaleziska', 'Opublikowane znaleziska', 'Dodane komentarze', 'Wykopane', 'Dzienny wykop', 'Obserwatorzy'],
+			loading: false,
 			rankingData: '',
 			value: '',
 		}
 	},
 	methods: {
 		getRankingData(query) {
+			this.loading = true
 			axios.get(`http://localhost:8082/users/ranking/${query}`)
 				.then(res => {
 					console.log(res)
 					this.rankingData = res.data.users
+					this.loading = false
 				})
 				.catch(err => {
+					this.loading = false
 					console.log(err)
 				})
 		},
